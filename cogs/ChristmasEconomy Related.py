@@ -171,6 +171,8 @@ class ChristmasEconomy(commands.Cog):
           setvalue(loaded)
       msg=f"\n\nWow! While working so hard, you incidentally found {candy(self)} **{candnum} cand{'ies' if candnum!=1 else 'y'}**! Congrats!!! {box(self)}"
       embed=discord.Embed(title=f"{workemoji(self)} Work", description=f"Working as a Santa, you sailed across the {snowglobe(self)} globe, chanting **ho ho ho**, and were rewarded {snowball(self)} **{add} snowballs** for your dedicated work!{msg if candnum!=0 else ''}", color=getcolor())
+      setvar('snowball', ctx.author, 0)
+      loaded=openfile()
       loaded[f"snowball_{str(ctx.author.id)}"]+=add
       setvalue(loaded)
       embed.set_footer(text=tagline(), icon_url=self.bot.user.avatar_url)
