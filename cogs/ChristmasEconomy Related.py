@@ -60,6 +60,8 @@ def literalchristmasbox(self):
   return self.bot.get_emoji(920174948889292800)
 def snowglobes(self):
   return self.bot.get_emoji(919930535546060800)
+def snowglobe(self):
+  return self.bot.get_emoji(919930535546060800)
 def christmastree(self):
   return self.bot.get_emoji(919479797728542771)
 def magichat(self):
