@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import time
+import random
 class Mod(commands.Cog):
     """Decancer, dehoist and other mod commands"""
     def __init__(self, bot):
