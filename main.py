@@ -9,6 +9,7 @@ initial_extensions=['cogs.ProhibitedWord Related', 'cogs.ChristmasEconomy Relate
 if __name__ == '__main__':
     for extension in initial_extensions:
         bot.load_extension(extension)
+bot.notauthor="You are not the author of this button!"
 class MyHelp(commands.HelpCommand):
     #BOT HELP
     async def send_bot_help(self, mapping):
@@ -38,8 +39,9 @@ class MyHelp(commands.HelpCommand):
               howmanycommands=howmanycommands+1
           embed.add_field(name=f'{circle} {cog.qualified_name} [`{howmanycommands}`]', value=f'> {commandsemoji} **Description:**\n{cog.description}\n> {includes} **Includes:**\n{listtosend}')
         prime=bot.get_user(816235165801513002)
-        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)", inline=False)
+        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)\n\n[Github](https://github.com/Kudos-Official/Hackathon-Topgg/), [Invite](https://discord.com/api/oauth2/authorize?client_id=919168462398578698&permissions=201714756&scope=bot)", inline=False)
         embed.set_footer(text="Thanks for using me!", icon_url=bot.user.avatar_url)
+        embed.set_image(url="https://media.giphy.com/media/nj0iEXGuDGsLV4rHY4/giphy.gif")
         await channel.send(embed=embed)
     #COMMAND HELP
     async def send_command_help(self, command):
@@ -59,7 +61,8 @@ class MyHelp(commands.HelpCommand):
         embed.add_field(name=f'{circle} {cmd.name}\'s Aliases', value=f'{commandsemoji} `{"`, `".join(cmd.aliases)}`')
         embed.set_author(name=author, icon_url=author.avatar_url)
         prime=bot.get_user(816235165801513002)
-        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)", inline=False)
+        embed.set_image(url="https://media.giphy.com/media/nj0iEXGuDGsLV4rHY4/giphy.gif")
+        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)\n\n[Github](https://github.com/Kudos-Official/Hackathon-Topgg/), [Invite](https://discord.com/api/oauth2/authorize?client_id=919168462398578698&permissions=201714756&scope=bot)", inline=False)
         embed.set_footer(text="Thanks for using me!", icon_url=bot.user.avatar_url)
         await channel.send(embed=embed)
     #COG HELP
@@ -87,9 +90,10 @@ class MyHelp(commands.HelpCommand):
         embed.add_field(name=f'{circle} Category {cog.qualified_name}\'s description', value=f'{commandsemoji} `{cog.description}`')
         embed.add_field(name=f'{circle} Category {cog.qualified_name} includes [`{howmanycommands}`] commands', value=f'{commandsemoji} {listtosend}')
         prime=bot.get_user(816235165801513002)
-        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)", inline=False)
+        embed.set_image(url="https://media.giphy.com/media/nj0iEXGuDGsLV4rHY4/giphy.gif")
+        embed.add_field(name=f"{py} Credits {py}",value=f"This bot is made using {edit} [**discord.py**](https://discordpy.readthedocs.io/en/stable/) {edit}\nSpecial thanks to all people who helped me in the {edit} [**discord.py discord server**](https://discord.gg/dpy) {edit}\nThanks for creating the discord.py library, {edit} [**Danny#0007**](https://discord.com/users/80088516616269824) {edit}\n\n{right} This bot is not affiliated with any of the discord.py users except the bot owners [**{owner.display_name}#{owner.discriminator}**](https://discord.com/users/760504975075180564), [**{prime.display_name}#{prime.discriminator}**](https://discord.com/users/816235165801513002)\n\n[Github](https://github.com/Kudos-Official/Hackathon-Topgg/), [Invite](https://discord.com/api/oauth2/authorize?client_id=919168462398578698&permissions=201714756&scope=bot)", inline=False)
         embed.set_footer(text="Thanks for using me!", icon_url=bot.user.avatar_url)
         await channel.send(embed=embed)
 bot.help_command=MyHelp()
 ui=UI(bot)
-bot.run("")
+bot.run("OTE5MTY4NDYyMzk4NTc4Njk4.YbR4Vg.gZZEyxrqOmECMuWaEd2JNnYB9s0")
