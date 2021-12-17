@@ -176,7 +176,7 @@ class FunAndUtil(commands.Cog):
           await ctx.send(f"{wrong} Wrong sentence")
           return
     @commands.command(aliases=['user','userinfo','user-info'], description='Get Information On A Given User', help="whois [member]")
-    async def whois(self, ctx, *, member=None):
+    async def whois(self, ctx, *, arg=None):
       try:
          member=ctx.message.mentions[0]
       except:
