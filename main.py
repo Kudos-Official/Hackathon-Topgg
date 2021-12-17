@@ -96,4 +96,4 @@ class MyHelp(commands.HelpCommand):
         await channel.send(embed=embed)
 bot.help_command=MyHelp()
 ui=UI(bot)
-bot.run("OTE5MTY4NDYyMzk4NTc4Njk4.YbR4Vg.gZZEyxrqOmECMuWaEd2JNnYB9s0")
+bot.run("")
