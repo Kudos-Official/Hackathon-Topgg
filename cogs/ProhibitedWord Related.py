@@ -311,7 +311,9 @@ class BlacklistedWords(commands.Cog):
                 added=0
                 isadded=f"\n{dot(self)} **Note:** Because of having only 1 swear word in the message, and not having any previous single swear word offenses in record(single word offenses are deleted after done twice, since a warn is added in that case), the user was not warned. If this repeats, then the single swear word offense will be set to 0, and they will be warned."
               else:
-                loaded.pop([f"1_{message.author.id}_{message.guild.id}"])
+                setvalue(loaded)
+                loaded=openfile()
+                loaded.pop(f"1_{message.author.id}_{message.guild.id}")
                 setvalue(loaded)
                 try:
                   loaded[f"warns_{message.author.id}_{message.guild.id}"]
@@ -339,7 +341,10 @@ class BlacklistedWords(commands.Cog):
                 added=offenses
                 isadded=""
             embed=discord.Embed(title="Usage Of Prohibited Words!", description=f"{cross(self)} {message.author.mention}, refrain from using blacklisted server words, and/or strong language.\n Words Used: `{len(wordsused)}` prohibited word{'s' if len(wordsused)!=1 else ''}. The words can be viewed in the logs(if you have enabled them).\n\n**Warns added:** `{added}`{isadded}", color=discord.Color.red())
-            await message.delete()
+            try:
+                await message.delete()
+            except:
+                pass
             await message.channel.send(embed=embed)
             await asyncio.sleep(1)
             try:
