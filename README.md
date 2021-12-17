@@ -4,5 +4,6 @@ When this bot was made, the bot did not use a json database. However, the databa
 
 We hope you like it! <3
 
-
 Startup: bash start.sh
+
+Bot Invite: https://discord.com/oauth2/authorize?client_id=919168462398578698&permissions=201714756&scope=bot
