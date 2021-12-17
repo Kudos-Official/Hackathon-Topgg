@@ -22,12 +22,11 @@ def setvar(var, guild, value):
 def openfile():
     with open("db.json", "r") as f:
         return json.load(f)
-def notadmin(self):
-    cross=self.bot.get_emoji(919263807732318249)
-    notadmin=f"{cross} You require the `ADMINISTRATOR` permissions to be able to execute this command"
-    return notadmin
 def cross(self):
   return self.bot.get_emoji(920962093065318421)
+def notadmin(self):
+    notadmin=f"{cross(self)} You require the `ADMINISTRATOR` permissions to be able to execute this command"
+    return notadmin
 def tick(self):
   return self.bot.get_emoji(920961667335065650)
 def dot(self):
@@ -48,6 +47,7 @@ class BlacklistedWords(commands.Cog):
         setvar("timestamp", ctx.guild, [])
       else:
         pass
+      loaded=openfile()
       if not word:
         await ctx.send(f"{cross(self)} Word not provided")
       else:
@@ -362,16 +362,16 @@ class BlacklistedWords(commands.Cog):
     @commands.command(aliases=['blacklistedwordlogs'], description='Set a log channel for blacklisted words', help="bwlogs <channel mention>")
     @commands.has_permissions(administrator=True)
     async def bwlogs(self, ctx):
-      channel=ctx.message.channel_mentions
-      if not channel:
+      try:
+        channel=ctx.message.channel_mentions[0].id
+      except:
         await ctx.send(f"{cross(self)} Mention a channel!")
         return
       else:
-        channel=ctx.message.channel_mentions[0]
-        await ctx.send(f"{tick(self)} Successfully updated the logs channel to {channel.mention}!")
         loaded=openfile()
-        loaded[f"channel_{str(ctx.guild.id)}"]=channel
+        loaded[f"channel_{str(ctx.guild.id)}"]=ctx.message.channel_mentions[0].id
         setvalue(loaded)
+        await ctx.send(f"{tick(self)} Successfully updated the logs channel to <#{channel}>!")
     @bwlogs.error
     async def bwlogs_error(self, ctx, error):
       await ctx.send(notadmin(self))
@@ -386,25 +386,25 @@ class BlacklistedWords(commands.Cog):
       else:
         cases=loaded[f"cases_{str(ctx.guild.id)}"]
       try:
-        loaded[f"channel_{str(ctx.guild.id)}"]
+        channel=loaded[f"channel_{str(ctx.guild.id)}"]
       except:
         channel=f"{cross(self)} Not Set Yet. Run `{self.bot.command_prefix}bwlogs` to do so"
       else:
-        channel=self.bot.get_channel(loaded[f"channel_{str(ctx.guild.id)}"]).mention
-      embed=discord.Embed(title="Prohibited Word Stats", description=f"{tick(self)} Here are some stats on the prohibited words", color=discord.Color.green())
-      embed.add_field(name=f"{dot(self)} No.of Cases", value=cases)
-      embed.add_field(name=f"{dot(self)} Logs Channel", value=channel)
-      embed.timestamp=datetime.datetime.now()
-      await ctx.send(embed=embed)
+        embed=discord.Embed(title="Prohibited Word Stats", description=f"{tick(self)} Here are some stats on the prohibited words", color=discord.Color.green())
+        embed.add_field(name=f"{dot(self)} No.of Cases", value=cases)
+        embed.add_field(name=f"{dot(self)} Logs Channel", value=f"<#{channel}>")
+        embed.timestamp=datetime.datetime.now()
+        await ctx.send(embed=embed)
     @bwstats.error
     async def bwstats_error(self, ctx, error):
       await ctx.send(notadmin(self))
     @commands.command(aliases=['blacklistedwordignorerole'], description='Set roles that can bypass the blacklisted word checker. Note: This does not add a role. This sets all the mentioned roles to roles that bypass the checker.', help="bwignorerole <role mentions>")
     @commands.has_permissions(administrator=True)
     async def bwignorerole(self, ctx):
+      loaded=openfile()
       if not ctx.message.role_mentions:
         try:
-          loaded.pop([f"ignorerole_{str(ctx.guild.id)}"])
+          loaded.pop(f"ignorerole_{str(ctx.guild.id)}")
           setvalue(loaded)
         except:
           await ctx.send(f"{cross(self)} Cannot set the roles to none, because it already is none")
@@ -412,7 +412,7 @@ class BlacklistedWords(commands.Cog):
           await ctx.send(f"{tick(self)} Successfully set the ignored roles to None")
       else:
         roles=[]
-        roles=[i.name for i in ctx.message.role_mentions]
+        roles=[f"{i.name}" for i in ctx.message.role_mentions]
         save=[j.id for j in ctx.message.role_mentions]
         loaded[f"ignorerole_{str(ctx.guild.id)}"]=save
         setvalue(loaded)
@@ -426,15 +426,15 @@ class BlacklistedWords(commands.Cog):
       loaded=openfile()
       if not ctx.message.channel_mentions:
         try:
-          loaded.pop([f"ignorechannel_{str(ctx.guild.id)}"])
+          loaded.pop(f"ignorechannel_{str(ctx.guild.id)}")
           setvalue(loaded)
         except:
           await ctx.send(f"{cross(self)} Cannot set the channels to none, because it already is none")
         else:
           await ctx.send(f"{tick(self)} Successfully set the ignored channels to None")
       else:
-        roles=[]
-        roles=[f"#{i.name}" for i in ctx.message.channel_mentions]
+        channels=[]
+        channels=[f"#{i.name}" for i in ctx.message.channel_mentions]
         save=[j.id for j in ctx.message.channel_mentions]
         loaded[f"ignorechannel_{str(ctx.guild.id)}"]=save
         setvalue(loaded)
