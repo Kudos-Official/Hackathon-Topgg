@@ -281,7 +281,7 @@ class ChristmasEconomy(commands.Cog):
             else:
                 setvar(item, ctx.author, 0)
                 loaded=openfile()
-                loaded[f"{item}_{str(ctx.author.id)}"]+=1
+                loaded[f"{item}_{str(ctx.author.id)}"]+=amount
                 loaded[f"candy_{str(ctx.author.id)}"]-=cost
                 setvalue(loaded)
                 await ctx.send(f"You successfully brought {emoji} `{amount}` **{item} box{'' if amount==1 else 'es'}**, and paid {candy(self)} `{cost}` candies to buy it!")
